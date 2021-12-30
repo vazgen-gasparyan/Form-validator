@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}" />
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/" method="POST">
+            <p>Register</p>
+            <div class="inputs">
+                <input type="text" autocomplete="off" placeholder="Email" name="email" id="email" required="required" />
+                {% for cat, msg in get_flashed_messages(True) %}
+                    {% if cat=="email" %}
+                    <p class="flash {{ cat }}">{{ msg }}</p>
+                    {% endif %}
+                {% endfor %}
+                <input type="password" autocomplete="off" placeholder="Password" name="password" id="password" required="required" />
+                {% for cat, msg in get_flashed_messages(True) %}
+                    {% if cat=="password" %}
+                    <p class="flash {{ cat }}">{{ msg }}</p>
+                    {% endif %}
+                {% endfor %}
+                <input type="text" autocomplete="off" placeholder="Confirm password" name="confirm" id="confirm" required="required" />
+                {% for cat, msg in get_flashed_messages(True) %}
+                    {% if cat=="confirm" %}
+                    <p class="flash {{ cat }}">{{ msg }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="register">
+                <button type="submit">Register</button>
+                {% for cat, msg in get_flashed_messages(True) %}
+                    {% if cat=="sucess" %}
+                    <p class="flash {{ cat }}">{{ msg }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
